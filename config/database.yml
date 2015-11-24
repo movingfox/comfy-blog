@@ -1,11 +1,12 @@
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  database: comfy-blog-dev
+  encoding: unicode
   pool: 5
-  timeout: 10000
 
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  database: comfy-blog-test
   pool: 5
-  timeout: 10000
+  encoding: unicode
+

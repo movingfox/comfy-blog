@@ -1,20 +1,34 @@
-# ComfyBlog
-[![Gem Version](https://img.shields.io/gem/v/comfy_blog.svg?style=flat)](http://rubygems.org/gems/comfy_blog) [![Gem Downloads](https://img.shields.io/gem/dt/comfy_blog.svg?style=flat)](http://rubygems.org/gems/comfy_blog) [![Build Status](https://img.shields.io/travis/comfy/comfy-blog.svg?style=flat)](https://travis-ci.org/comfy/comfy-blog) [![Dependency Status](https://img.shields.io/gemnasium/comfy/comfy-blog.svg?style=flat)](https://gemnasium.com/comfy/comfy-blog) [![Code Climate](https://img.shields.io/codeclimate/github/comfy/comfy-blog.svg?style=flat)](https://codeclimate.com/github/comfy/comfy-blog) [![Coverage Status](https://img.shields.io/coveralls/comfy/comfy-blog.svg?style=flat)](https://coveralls.io/r/comfy/comfy-blog?branch=master)
+# ComfyBlog engine for Comfortable Mexican Loveseat
 
-ComfyBlog is an simple blog management engine for [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa)
+ComfyBlog is a simple blog management engine for the [ComfortableMexicanLoveseat](https://github.com/HitFox/comfortable_mexican_loveseat) gem we use at Hitfox. It was inspired by and built on top of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa).
 
-## Features
+## **NOTE:**
+* If you already have a project setup through `foxinator-generator`, please skip to [Blog Installation](https://github.com/DemitryT/comfy-blog#blog-installation)
+
+## Pre-requesites
+* The blogging engine depends on the CMS to be setup with foxinator and loveseat gems
+* So if you don't already have these included in your project's Gemfile, add them as follows:
+<pre>
+gem 'comfortable_mexican_loveseat'
+gem 'foxinator-generator',
+  git: 'git@github.com:HitFox/foxinator-generator.git'
+</pre>
+* If you haven't run the foxinator setup command, run `rails g foxinator:setup` and follow all of the steps outlined [here](https://github.com/HitFox/foxinator-generator#usage).
+
+## Blog Features
 
 * Ability to set up multiple blogs per site
 * User defined layout per blog
 
-## Installation
+## Blog Installation
 
 Add gem definition to your Gemfile:
 
-```ruby
-gem 'comfy_blog', '~> 1.12.0'
-```
+<pre>
+gem 'comfy_blog', git: 'git@github.com:DemitryT/comfy-blog.git'
+</pre>
+
+As mentioned above, the blog depends on our loveseat gem, so if you don't have the loveseat and foxinator gems, please include them in your project's Gemfile:
 
 Then from the Rails project's root run:
 
