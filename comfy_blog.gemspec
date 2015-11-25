@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = ComfyBlog::VERSION
   s.authors     = ["Oleg Khabarov", "Demitry Toumilovich"]
   s.email       = ["oleg@khabarov.ca", "demitry.toumilovich@hitfoxgroupcom"]
-  s.homepage    = "https://github.com/DemitryT/comfy-blog"
+  s.homepage    = "https://github.com/HitFox/comfy-blog"
   s.summary     = "Blog component for ComfortableMexicanLoveseat"
   s.description = "Easily integrate a blog with a comfy site built on top of ComfortableMexicanLoveseat"
   s.license     = 'MIT'
