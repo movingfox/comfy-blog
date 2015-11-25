@@ -20,11 +20,18 @@ class Comfy::Blog::PostsController < Comfy::Blog::BaseController
   end
 
   def index
-    scope = if params[:year]
-      scope = @blog.posts.published.for_year(params[:year])
-      params[:month] ? scope.for_month(params[:month]) : scope
+    scope = if params[:category]
+      if @category = Category.find_by(name: params[:category]).try(:name)
+        @blog.posts.includes(:categories).published.where(categories: {name: @category} ).order(published_at: :desc)
+      else
+        # This is to handle unrecognized categories, no reason to
+        # show an error the end user.
+        redirect_to comfy_blog_posts_path(locale: layout_locale) and return
+      end
+    elsif params[:author]
+      @blog.posts.published.by_author(params[:author]).order(published_at: :desc)
     else
-      @blog.posts.published
+      @blog.posts.published.order(published_at: :desc)
     end
 
     limit = ComfyBlog.config.posts_per_page
