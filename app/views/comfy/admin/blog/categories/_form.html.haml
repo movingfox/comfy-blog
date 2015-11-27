@@ -1,2 +1,5 @@
 = form.text_field :name
 = form.hidden_field :blog_id, value: params[:blog_id]
+= form.form_group :class => 'form-actions' do
+  = form.submit :class => 'btn btn-primary'
+  = link_to t('.cancel'), comfy_admin_blog_categories_path(@site, @blog), :class => 'btn btn-link'

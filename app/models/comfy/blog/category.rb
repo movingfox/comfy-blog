@@ -13,7 +13,10 @@ class Comfy::Blog::Category < ActiveRecord::Base
   validates :name,
     uniqueness: true
 
-  def self.for_this_site(blog)
-    where(blog_id: blog.id)
+  # Class methods
+  class << self
+    def for_this_blog(blog)
+      where(blog_id: blog.id)
+    end
   end
 end

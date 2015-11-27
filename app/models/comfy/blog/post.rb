@@ -4,21 +4,17 @@ class Comfy::Blog::Post < ActiveRecord::Base
 
   # -- Relationships --------------------------------------------------------
   belongs_to :blog
-  belongs_to :author,
-    class_name: Admin,
-    foreign_key: 'author_id'
 
   has_many :comments,
     :dependent => :destroy
   has_many :post_categories,
     class_name: Comfy::Blog::PostCategory
   has_many :categories,
-    class_name: Comfy::Blog::Category,
     through: :post_categories,
     dependent: :nullify
 
   # -- Validations ----------------------------------------------------------
-  validates :blog_id, :title, :slug, :year, :month, :content,
+  validates :blog_id, :title, :slug, :year, :month, :content, :author,
     :presence   => true
   validates :slug,
     :uniqueness => { :scope => [:blog_id, :year, :month] },

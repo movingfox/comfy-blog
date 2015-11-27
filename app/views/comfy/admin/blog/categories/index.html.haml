@@ -1,0 +1,22 @@
+.page-header
+  = link_to t('.new_category'), new_comfy_admin_blog_category_path(@site, @blog), :class => 'btn btn-default pull-right'
+  %h2= t('.page_title')
+
+= comfy_paginate @categories
+
+%table.table.table-hover
+  %tr
+    = th(:name)
+    %th="Actions"
+
+  - @categories.each do |category|
+    %tr
+      %td.main
+        = link_to category.name, edit_comfy_admin_blog_category_path(@site, @blog, category)
+      %td
+        .btn-group.btn-group-sm
+          = link_to t('.edit'), edit_comfy_admin_blog_category_path(@site, @blog, category), :class => 'btn btn-default'
+          = link_to t('.delete'), comfy_admin_blog_category_path(@site, @blog, category), :method => :delete, :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-danger'
+
+
+= comfy_paginate @categories
