@@ -1,6 +1,6 @@
 class Comfy::Blog::PostCategory < ActiveRecord::Base
   belongs_to :category,
-    class: Comfy::Blog::Category
+    class_name: Comfy::Blog::Category
   belongs_to :post,
-    class: Comfy::Blog::Post
+    class_name: Comfy::Blog::Post
 end

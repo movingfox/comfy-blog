@@ -4,13 +4,18 @@ class Comfy::Blog::Post < ActiveRecord::Base
 
   # -- Relationships --------------------------------------------------------
   belongs_to :blog
+  belongs_to :author,
+    class_name: Admin,
+    foreign_key: 'author_id'
 
   has_many :comments,
     :dependent => :destroy
   has_many :post_categories,
-    :dependent  => :destroy
+    class_name: Comfy::Blog::PostCategory
   has_many :categories,
-    through: :post_categories
+    class_name: Comfy::Blog::Category,
+    through: :post_categories,
+    dependent: :nullify
 
   # -- Validations ----------------------------------------------------------
   validates :blog_id, :title, :slug, :year, :month, :content,
@@ -18,6 +23,7 @@ class Comfy::Blog::Post < ActiveRecord::Base
   validates :slug,
     :uniqueness => { :scope => [:blog_id, :year, :month] },
     :format => { :with => /\A%*\w[a-z0-9_\-\%]*\z/i }
+  validate :at_least_one_category
 
   # -- Scopes ---------------------------------------------------------------
   default_scope -> {
@@ -37,6 +43,17 @@ class Comfy::Blog::Post < ActiveRecord::Base
   before_validation :set_slug,
                     :set_published_at,
                     :set_date
+
+  # -- Instance Methods -----------------------------------------------------
+  def at_least_one_category
+    errors.add(:category_ids, 'Please choose at least one category.') if category_ids.empty?
+  end
+
+  def related_posts
+    blog.posts.select do |post|
+      post != self && post.categories.any? { |category| categories.include?(category) }
+    end.last(3).sort_by(&:published_at).reverse
+  end
 
 protected
 

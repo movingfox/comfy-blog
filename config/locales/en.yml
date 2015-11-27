@@ -32,6 +32,7 @@ en:
           blogs: Blogs
           posts: Posts
           comments: Comments
+          categories: Categories
       blog:
         blogs:
           not_found: Blog not found

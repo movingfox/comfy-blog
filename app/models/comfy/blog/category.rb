@@ -1,10 +1,13 @@
-class Category < ActiveRecord::Base
+class Comfy::Blog::Category < ActiveRecord::Base
+
+  self.table_name = 'comfy_blog_categories'
+
   belongs_to :blog
   has_many :comfy_blog_post_categories,
-    class: Comfy::Blog::Category
+    class_name: Comfy::Blog::PostCategory
   has_many :posts,
     through: :comfy_blog_post_categories,
-    class: Comfy::Blog::Post
+    class_name: Comfy::Blog::Post
   validates :name, :blog,
     presence: true
   validates :name,

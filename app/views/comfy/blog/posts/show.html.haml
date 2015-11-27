@@ -1,18 +1,23 @@
-%h1 Blog Post
+- content_for :blog_seo_data do
+  = comfy_blog_post_seo_tags(@post, request)
+%article.blog_single
+  .container.blog_container
+    .col-md-8.col-md-offset-2
+      = render 'post', post: @post
 
-%h1= @post.title
+      .related_posts
+        %h2= t('related_posts')
+        %ul
+          - if @post.related_posts.present?
+            - @post.related_posts.each do |post|
+              %li
+                %p
+                  = link_to blog_post_link_based_on_locale(post.slug) do
+                    = post.title
+                  By
+                  = post.author_name
+          - else
+            There currently are no other posts in this category.
 
-.author
-  = @post.author
-.date
-  = @post.published_at.to_s(:db)
-.content
-  = @post.content.html_safe
-
-.comments
-  - @post.comments.published.each do |comment|
-    .comment
-      .author= comment.author
-      .content= comment.content
-
-  = render :partial => 'comfy/blog/comments/form'
+      .comments
+        = render :partial => 'comfy/blog/comments/form'

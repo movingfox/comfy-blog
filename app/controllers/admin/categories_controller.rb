@@ -1,4 +1,4 @@
-class Admin::CategoriesController < Admin::BaseController
+class Admin::Comfy::Blog::CategoriesController < Admin::BaseController
 
   #
   # Settings
@@ -7,7 +7,7 @@ class Admin::CategoriesController < Admin::BaseController
   #
   #
   #
-
+  
   #
   # Concerns
   # ---------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ class Admin::CategoriesController < Admin::BaseController
   #
   #
   #
-
+  
   #
   # Actions
   # ---------------------------------------------------------------------------------------
@@ -39,7 +39,8 @@ class Admin::CategoriesController < Admin::BaseController
   #
   #
   #
-
+  
+  
   #
   # Protected
   # ---------------------------------------------------------------------------------------
@@ -50,9 +51,6 @@ class Admin::CategoriesController < Admin::BaseController
 
   protected
 
-  def end_of_association_chain
-   Category.where(blog_id: params[:blog_id])
-  end
   #
   # Private
   # ---------------------------------------------------------------------------------------
@@ -64,6 +62,6 @@ class Admin::CategoriesController < Admin::BaseController
   private
 
   def permitted_params
-    params.permit(resource_instance_name => [:name, :blog_id])
+    params.permit(resource_instance_name => [])
   end
 end

@@ -25,7 +25,7 @@ gem 'foxinator-generator',
 Add gem definition to your Gemfile:
 
 <pre>
-gem 'comfy_blog', git: 'git@github.com:HitFox/comfy-blog.git'
+gem 'comfy_blog', '0.0.1' git: 'git@github.com:HitFox/comfy-blog.git'
 </pre>
 
 As mentioned above, the blog depends on our loveseat gem, so if you don't have the loveseat and foxinator gems, please include them in your project's Gemfile:
@@ -36,7 +36,7 @@ Then from the Rails project's root run:
     rails generate comfy:blog
     rake db:migrate
 
-Take a look inside your `config/routes.rb` file and you should see following lines there:
+Add these lines to your `config/routes.rb` file:
 
 ```ruby
 comfy_route :blog_admin, :path => 'admin'

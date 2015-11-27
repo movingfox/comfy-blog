@@ -1,0 +1,25 @@
+%section.events_page_splash
+  .container
+    %h1
+      Blog
+    %p
+      Posts in '#{@category}'
+
+%section
+  .container
+    .col-md-10.col-md-offset-1
+      = render "list_categories"
+
+      - @posts.each do |post|
+        = link_to comfy_blog_post_path(post.slug) do
+          %article.category_view
+            .row
+              .col-md-12
+                %h2
+                  = post.title
+                %p
+                  = post.author_name
+                  &mdash;
+                  = post.published_at.to_formatted_s(:ordinal)
+
+      %p= comfy_paginate @posts
