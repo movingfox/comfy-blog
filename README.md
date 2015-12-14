@@ -52,7 +52,9 @@ You should also find view templates in `/app/views/blog` folder. Feel free to ad
 It seems as though when you create more than one blog for a site, the blog lookup gets messed up. So if there is one blog per site, then everything works correctly (which has been the use case every time we've used the original verison of the gem).
 
 ## Changelog
-- Added the ability to manage blog categories in the backend. Can tie blog posts to multiple categories and added a category filter on the front end for blog posts.
+
+* Added the ability to manage blog categories in the backend. Can tie blog posts to multiple categories and added a category filter on the front end for blog posts.
+
 ---
 
 Copyright 2009-2014 Oleg Khabarov
