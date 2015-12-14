@@ -32,6 +32,7 @@ en:
           blogs: Blogs
           posts: Posts
           comments: Comments
+          categories: Categories
       blog:
         blogs:
           not_found: Blog not found
@@ -105,3 +106,24 @@ en:
             publish: Publish
             delete: Delete
             confirm_message: Are you sure?
+        categories:
+          created: Category created
+          create_failure: Failed to create Category
+          updated: Category updated
+          update_failure: Failed to update Category
+          deleted: Category removed
+          delete_failure: Category could not be removed
+          not_found: Category not found
+          index:
+            page_title: Blog categories
+            new_category: New category
+            name: Name
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
+          new:
+            page_title: New category
+          edit:
+            page_title: Edit category
+          form:
+            cancel: Cancel

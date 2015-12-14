@@ -1,0 +1,15 @@
+%header
+  %h1= post.title
+
+  %p
+    Published on
+    = post.published_at.to_formatted_s(:ordinal)
+
+.blog_entry
+  = post.content.html_safe
+
+.blog_author_description
+  - if post.author
+    By
+    = post.author
+
