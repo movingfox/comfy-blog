@@ -21,8 +21,13 @@ class Comfy::Blog::PostsController < Comfy::Blog::BaseController
 
   def index
     scope = if params[:category]
-      if @category = Category.find_by(name: params[:category]).try(:name)
-        @blog.posts.includes(:categories).published.where(categories: {name: @category} ).order(published_at: :desc)
+      if @category = Comfy::Blog::Category.find_by(name: params[:category]).try(:name)
+        @blog.posts
+          .includes(:categories)
+          .where('comfy_blog_categories.name = ?', @category)
+          .references(:categories)
+          .published
+          .order(published_at: :desc)
       else
         # This is to handle unrecognized categories, no reason to
         # show an error the end user.

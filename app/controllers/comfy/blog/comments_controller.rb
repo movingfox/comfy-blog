@@ -7,7 +7,7 @@ class Comfy::Blog::CommentsController < Comfy::Blog::BaseController
     @comment.save!
 
     flash[:success] = t('comfy.admin.blog.comments.created')
-    redirect_to comfy_blog_post_path(@cms_site.path, @blog.path, @post.slug)
+    redirect_to comfy_blog_post_path(@cms_site.path, blog_path: @blog.path, slug: @post.slug)
 
   rescue ActiveRecord::RecordInvalid
     flash[:error] = t('comfy.admin.blog.comments.create_failure')

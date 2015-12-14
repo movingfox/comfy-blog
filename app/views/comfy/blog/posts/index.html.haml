@@ -1,13 +1,17 @@
 %h1 Blog Posts
+- if params[:category]
+  %h1 All posts in "#{ @category }"
+
+= render "list_categories"
 
 - @posts.each do |post|
 
-  %h1= link_to post.title, comfy_blog_post_path(@cms_site.path, @blog.path, post.slug)
+  %h1= link_to post.title, comfy_blog_post_path(@cms_site.path, blog_path: @blog.path, slug: post.slug)
   .author
     = post.author
   .date
     = post.published_at.to_s(:db)
   .content
-    = post.content.html_safe
+    = post.excerpt.html_safe
 
 = comfy_paginate @posts

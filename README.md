@@ -36,13 +36,17 @@ Then from the Rails project's root run:
     rails generate comfy:blog
     rake db:migrate
 
-Add these lines to your `config/routes.rb` at the bottom of the `scope ':locale' do` block:
+<h3>Routes</h3>
+Make sure these lines in your `config/routes.rb` are at the bottom of the `scope ':locale' do` block (add them if they're not automatically added):
 
-```ruby
-comfy_route :blog_admin, :path => 'admin'
-comfy_route :blog, :path => 'blog'
-```
 
+    comfy_route :blog_admin, :path => 'admin'
+    comfy_route :blog, :path => 'blog'
+
+
+**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank. By default, the blog is under `localhost:3000/blog`. The path field can be used for other blogs in the future. However, it would be yet another parameter after `/blog`, so for example, a second blog for a site would be under `localhost:3000/blog/second-blog`.
+
+<h3>Views</h3>
 You should also find view templates in `/app/views/blog` folder. Feel free to adjust them as you see fit.
 
 ---

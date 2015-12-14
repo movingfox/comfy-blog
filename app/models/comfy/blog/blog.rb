@@ -21,7 +21,17 @@ class Comfy::Blog::Blog < ActiveRecord::Base
     :uniqueness => { :scope => :site_id },
     :format     => { :with => /\A\w[a-z0-9_-]*\z/i },
     :presence   => true,
-    :if         => 'restricted_path?'
+    :if         => 'restricted_path?' # only validates presence on first blog
+
+  before_save :clean_blog_path
+
+private
+
+  def clean_blog_path
+    # If we eventually want to support blogs at root level, we will have to store
+    # the path as NULL to have the lookup work correctly.
+    self.update_attribute(:path, nil) if self.path.eql?('')
+  end
 
 protected
 
