@@ -6,9 +6,8 @@ class Comfy::Blog::Category < ActiveRecord::Base
   has_many :comfy_blog_post_categories,
     class_name: Comfy::Blog::PostCategory
   has_many :posts,
-    through: :comfy_blog_post_categories,
-    class_name: Comfy::Blog::Post
-  validates :name, :blog,
+    through: :comfy_blog_post_categories
+  validates :name, :blog_id,
     presence: true
   validates :name,
     uniqueness: true

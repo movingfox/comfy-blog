@@ -36,7 +36,7 @@ Then from the Rails project's root run:
     rails generate comfy:blog
     rake db:migrate
 
-Add these lines to your `config/routes.rb` file:
+Add these lines to your `config/routes.rb` at the bottom of the `scope ':locale' do` block:
 
 ```ruby
 comfy_route :blog_admin, :path => 'admin'

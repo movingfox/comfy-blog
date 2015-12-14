@@ -53,7 +53,7 @@ class CreateBlog < ActiveRecord::Migration
     # lookup table with index for performance
     create_table :comfy_blog_post_categories do |t|
       t.integer :post_id,       null: false
-      t.string  :category_id,   null: false
+      t.integer :category_id,   null: false
     end
     add_index :comfy_blog_post_categories, [:post_id, :category_id]
   end

@@ -7,10 +7,10 @@ class Comfy::Blog::Post < ActiveRecord::Base
 
   has_many :comments,
     :dependent => :destroy
-  has_many :post_categories,
+  has_many :comfy_blog_post_categories,
     class_name: Comfy::Blog::PostCategory
   has_many :categories,
-    through: :post_categories,
+    through: :comfy_blog_post_categories,
     dependent: :nullify
 
   # -- Validations ----------------------------------------------------------
