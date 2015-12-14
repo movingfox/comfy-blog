@@ -31,7 +31,7 @@ class Comfy::Blog::PostsController < Comfy::Blog::BaseController
       else
         # This is to handle unrecognized categories, no reason to
         # show an error the end user.
-        redirect_to comfy_blog_posts_path(locale: layout_locale) and return
+        redirect_to comfy_blog_posts_path(blog_path: @blog.path) and return
       end
     elsif params[:author]
       @blog.posts.published.by_author(params[:author]).order(published_at: :desc)
