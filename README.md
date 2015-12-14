@@ -3,9 +3,9 @@
 ComfyBlog is a simple blog management engine for the [ComfortableMexicanLoveseat](https://github.com/HitFox/comfortable_mexican_loveseat) gem we use at Hitfox. The loveseat gem was inspired by and built on top of [ComfortableMexicanSofa](https://github.com/comfy/comfortable-mexican-sofa).
 
 ## **NOTE:**
-* If you already have a project setup through `foxinator-generator`, please skip to [Blog Installation](https://github.com/HitFox/comfy-blog#blog-installation)
+* If you already have a project setup through `foxinator-generator`, please skip to [Installation](https://github.com/HitFox/comfy-blog#installation)
 
-## Pre-requesites
+## Prerequesites
 * The blogging engine depends on the CMS to be setup with foxinator and loveseat gems
 * So if you don't already have these included in your project's Gemfile, add them as follows:
 <pre>
@@ -20,7 +20,7 @@ gem 'foxinator-generator',
 * Ability to set up multiple blogs per site
 * User defined layout per blog
 
-## Blog Installation
+## Installation
 
 Add gem definition to your Gemfile:
 
