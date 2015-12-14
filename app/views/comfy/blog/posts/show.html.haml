@@ -21,4 +21,10 @@
 
       %h3="Comments"
       .comments
+        - @post.comments.published.each do |comment|
+          .comment
+            .author= comment.author
+            .content= comment.content
+            %br
+
         = render :partial => 'comfy/blog/comments/form'
