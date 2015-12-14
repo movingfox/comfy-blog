@@ -6,4 +6,6 @@ class Comfy::Blog::PostCategory < ActiveRecord::Base
     class_name: Comfy::Blog::Category
   belongs_to :post,
     class_name: Comfy::Blog::Post
+
+  validates :category_id, :post_id, presence: true
 end
