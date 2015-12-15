@@ -18,7 +18,6 @@ class CreateBlog < ActiveRecord::Migration
       t.string    :slug,          null: false
       t.text      :content
       t.text      :excerpt        # used as preview text of a blog post
-      t.string    :author,        null: false
       t.integer   :year,          null: false, limit: 4
       t.integer   :month,         null: false, limit: 2
       t.boolean   :is_published,  null: false, default: true
@@ -81,6 +80,10 @@ class CreateBlog < ActiveRecord::Migration
     drop_table :comfy_blogs
     drop_table :comfy_blog_posts
     drop_table :comfy_blog_comments
+    drop_table :comfy_blog_categories
+    drop_table :comfy_blog_post_categories
+    drop_table :comfy_blog_authors
+    drop_table :comfy_blog_post_authors
   end
 
 end

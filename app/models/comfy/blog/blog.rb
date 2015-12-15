@@ -11,6 +11,8 @@ class Comfy::Blog::Blog < ActiveRecord::Base
     :through    => :posts
   has_many :categories,
     dependent: :destroy
+  has_many :authors,
+    dependent: :destroy
 
   # -- Validations ----------------------------------------------------------
   validates :site_id, :label, :identifier,

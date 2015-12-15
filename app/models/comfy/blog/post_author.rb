@@ -6,6 +6,4 @@ class Comfy::Blog::PostAuthor < ActiveRecord::Base
     class_name: Comfy::Blog::Author
   belongs_to :post,
     class_name: Comfy::Blog::Post
-
-  validates :author_id, :post_id, presence: true
 end

@@ -35,6 +35,9 @@ Then from the Rails project's root run:
     bundle install
     rails generate comfy:blog
     rake db:migrate
+    rake admins:permit
+
+The last command has to be run since we're creating custom models for admins to manage in the CMS. So the permissions for admins have to be updated correctly. If you don't see the correct sections in the cms admin panel under Blog, you could also try clicking "Sync" on the UI.
 
 <h3>Routes</h3>
 Make sure to add these lines in your `config/routes.rb` are at the bottom of the `scope ':locale' do` block:
@@ -49,7 +52,8 @@ You should also find view templates in `/app/views/blog` folder. Feel free to ad
 
 ## Known limitations
 
-It seems as though when you create more than one blog for a site, the blog lookup gets messed up. So if there is one blog per site, then everything works correctly (which has been the use case every time we've used the original verison of the gem).
+* SEO data will not work for the blog home page, unless there is at least one page created under the Sites tab in the CMS. The SEO logic only works for the blog posts pages.
+* It seems as though when you create more than one blog for a site, the blog lookup gets messed up. So if there is one blog per site, then everything works correctly (which has been the use case every time we've used the original verison of the gem).
 
 ## Changelog
 

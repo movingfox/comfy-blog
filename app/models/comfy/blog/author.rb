@@ -10,6 +10,10 @@ class Comfy::Blog::Author < ActiveRecord::Base
   validates :first_name, :last_name, :blog_id,
     presence: true
 
+  def full_name
+    "#{ first_name } #{ last_name }"
+  end
+
   class << self
     def for_blog(blog)
       where(blog_id: blog.id)

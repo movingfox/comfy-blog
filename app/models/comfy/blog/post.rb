@@ -6,20 +6,29 @@ class Comfy::Blog::Post < ActiveRecord::Base
   belongs_to :blog
 
   has_many :comments,
-    :dependent => :destroy
+    dependent: :destroy
   has_many :comfy_blog_post_categories,
     class_name: Comfy::Blog::PostCategory
   has_many :categories,
     through: :comfy_blog_post_categories,
-    dependent: :nullify
+    dependent: :destroy
+  has_many :comfy_blog_post_authors,
+    class_name: Comfy::Blog::PostAuthor
+  has_many :authors,
+    through: :comfy_blog_post_authors,
+    dependent: :destroy
 
   # -- Validations ----------------------------------------------------------
-  validates :blog_id, :title, :slug, :year, :month, :content, :author,
+  validates :blog_id, :title, :slug, :year, :month, :content,
     :presence   => true
   validates :slug,
     :uniqueness => { :scope => [:blog_id, :year, :month] },
     :format => { :with => /\A%*\w[a-z0-9_\-\%]*\z/i }
-  validate :at_least_one_category
+  validate :at_least_one_category, :at_least_one_author
+
+  before_validation do |model|
+    author_ids.reject!(&:blank?) if author_ids
+  end
 
   # -- Scopes ---------------------------------------------------------------
   default_scope -> {
@@ -41,6 +50,10 @@ class Comfy::Blog::Post < ActiveRecord::Base
                     :set_date
 
   # -- Instance Methods -----------------------------------------------------
+  def at_least_one_author
+    errors.add(:author_ids, 'Please choose at least one author.') if author_ids.empty?
+  end
+
   def at_least_one_category
     errors.add(:category_ids, 'Please choose at least one category.') if category_ids.empty?
   end
