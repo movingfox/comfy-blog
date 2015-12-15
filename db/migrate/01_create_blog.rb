@@ -18,7 +18,6 @@ class CreateBlog < ActiveRecord::Migration
       t.string    :slug,          null: false
       t.text      :content
       t.text      :excerpt        # used as preview text of a blog post
-      t.string    :author,        null: false
       t.integer   :year,          null: false, limit: 4
       t.integer   :month,         null: false, limit: 2
       t.boolean   :is_published,  null: false, default: true
@@ -42,26 +41,49 @@ class CreateBlog < ActiveRecord::Migration
     add_index :comfy_blog_comments, [:post_id, :is_published, :created_at],
       :name => 'index_blog_comments_on_post_published_created'
 
+    # Migrations for categories
     create_table :comfy_blog_categories do |t|
       t.string :name, index: true
       t.references :blog, references: :comfy_blogs, index: true, null: false
-
       t.timestamps null: false
     end
     add_foreign_key :comfy_blog_categories, :comfy_blogs, column: :blog_id, on_delete: :cascade
 
-    # lookup table with index for performance
     create_table :comfy_blog_post_categories do |t|
       t.integer :post_id,       null: false
       t.integer :category_id,   null: false
+      t.timestamps
     end
     add_index :comfy_blog_post_categories, [:post_id, :category_id]
+
+
+    # Migrations for authors
+    create_table :comfy_blog_authors do |t|
+      t.references :blog, references: :comfy_blogs, index: true, null: false
+      t.string  :first_name,    null: false
+      t.string  :last_name,     null: false
+      t.text    :description
+      t.timestamps
+    end
+    add_foreign_key :comfy_blog_authors, :comfy_blogs, column: :blog_id, on_delete: :cascade
+
+    create_table :comfy_blog_post_authors do |t|
+      t.integer :post_id,       null: false
+      t.integer :author_id,     null: false
+      t.timestamps
+    end
+    add_index :comfy_blog_post_authors, [:post_id, :author_id]
+
   end
 
   def self.down
     drop_table :comfy_blogs
     drop_table :comfy_blog_posts
     drop_table :comfy_blog_comments
+    drop_table :comfy_blog_categories
+    drop_table :comfy_blog_post_categories
+    drop_table :comfy_blog_authors
+    drop_table :comfy_blog_post_authors
   end
 
 end

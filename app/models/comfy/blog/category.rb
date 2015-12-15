@@ -14,7 +14,7 @@ class Comfy::Blog::Category < ActiveRecord::Base
 
   # Class methods
   class << self
-    def for_this_blog(blog)
+    def for_blog(blog)
       where(blog_id: blog.id)
     end
   end

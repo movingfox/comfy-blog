@@ -15,10 +15,16 @@
                   = link_to comfy_blog_post_path(blog_path: @blog.path, slug: post.slug) do
                     = post.title
                   By
-                  = post.author
+                  = post.authors.first.full_name
           - else
             There currently are no other posts in this category.
 
       %h3="Comments"
       .comments
+        - @post.comments.published.each do |comment|
+          .comment
+            .author= comment.author
+            .content= comment.content
+            %br
+
         = render :partial => 'comfy/blog/comments/form'

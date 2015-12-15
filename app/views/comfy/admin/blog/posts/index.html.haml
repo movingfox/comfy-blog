@@ -16,12 +16,10 @@
     %tr
       %td.main
         = link_to post.title, edit_comfy_admin_blog_post_path(@site, @blog, post)
-        .item-meta
-          = post.excerpt
       %td
-        = post.author
+        = post.authors.first.full_name # we currently only allow one author
       %td
-        = post.published_at.try(:to_s, :db)
+        = post.published_at.to_formatted_s(:ordinal)
       %td
         = link_to t('.comment_count', :count => post.comments.count), comfy_admin_blog_comments_path(@site, @blog, :post_id => post.id), :class => 'btn btn-sm btn-info'
       %td

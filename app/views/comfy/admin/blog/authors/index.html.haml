@@ -1,0 +1,22 @@
+.page-header
+  = link_to t('.new_author'), new_comfy_admin_blog_author_path(@site, @blog), :class => 'btn btn-default pull-right'
+  %h2= t('.page_title')
+
+= comfy_paginate @authors
+
+%table.table.table-hover
+  %tr
+    = th(:name)
+    %th="Actions"
+
+  - @authors.each do |author|
+    %tr
+      %td.main
+        = link_to author.full_name, edit_comfy_admin_blog_author_path(@site, @blog, author)
+      %td
+        .btn-group.btn-group-sm
+          = link_to t('.edit'), edit_comfy_admin_blog_author_path(@site, @blog, author), :class => 'btn btn-default'
+          = link_to t('.delete'), comfy_admin_blog_author_path(@site, @blog, author), :method => :delete, :data => {:confirm => 'Are you sure?'}, :class => 'btn btn-danger'
+
+
+= comfy_paginate @authors

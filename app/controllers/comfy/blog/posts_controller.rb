@@ -34,7 +34,14 @@ class Comfy::Blog::PostsController < Comfy::Blog::BaseController
         redirect_to comfy_blog_posts_path(blog_path: @blog.path) and return
       end
     elsif params[:author]
-      @blog.posts.published.by_author(params[:author]).order(published_at: :desc)
+      if @author = Comfy::Blog::Author.find_by(id: params[:author])
+        @blog.posts
+          .published
+          .by_author(@author.id)
+          .order(published_at: :desc)
+      else
+        redirect_to comfy_blog_posts_path(blog_path: @blog.path) and return
+      end
     else
       @blog.posts.published.order(published_at: :desc)
     end
@@ -57,6 +64,7 @@ class Comfy::Blog::PostsController < Comfy::Blog::BaseController
       @blog.posts.published.where(:slug => params[:slug]).first!
     end
     @comment = @post.comments.new
+    @author = @post.authors.first
 
   rescue ActiveRecord::RecordNotFound
     render :cms_page => '/404', :status => 404

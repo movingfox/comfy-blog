@@ -13,6 +13,7 @@ class ActionDispatch::Routing::Mapper
               patch :toggle_publish, :on => :member
             end
             resources :categories
+            resources :authors
           end
         end
       end
