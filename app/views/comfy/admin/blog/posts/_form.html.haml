@@ -1,8 +1,10 @@
 - if Comfy::Blog::Category.all.present?
   = form.text_field :title, :data => {:slugify => @post.new_record?}
   = form.text_field :slug, :data => {:slug => true}
-  = form.text_field :author
   = form.collection_check_boxes :category_ids, Comfy::Blog::Category.for_blog(@blog), :id, :name, label: "Categories"
+  = form.collection_select :author_ids,
+     Comfy::Blog::Author.for_blog(@blog).order("first_name ASC"),
+     :id, :full_name, {label: "Authors"}, { multiple: false }
   = form.text_area :content, :data => {'cms-rich-text' => true}
   = form.text_area :excerpt, :class => 'short'
   = form.text_field :published_at, :value => @post.published_at.try(:to_s, :db), :data => {'cms-datetime' => true}

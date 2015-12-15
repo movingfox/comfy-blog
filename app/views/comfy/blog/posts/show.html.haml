@@ -15,7 +15,7 @@
                   = link_to comfy_blog_post_path(blog_path: @blog.path, slug: post.slug) do
                     = post.title
                   By
-                  = post.author
+                  = post.authors.first.full_name
           - else
             There currently are no other posts in this category.
 

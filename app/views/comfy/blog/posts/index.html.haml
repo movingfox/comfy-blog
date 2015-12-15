@@ -8,9 +8,9 @@
 
   %h1= link_to post.title, comfy_blog_post_path(@cms_site.path, blog_path: @blog.path, slug: post.slug)
   .author
-    = post.author
+    = post.authors.first.full_name
   .date
-    = post.published_at.to_s(:db)
+    = post.published_at.to_formatted_s(:ordinal)
   .content
     = post.excerpt.html_safe
 

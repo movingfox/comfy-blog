@@ -9,7 +9,7 @@
   = post.content.html_safe
 
 .blog_author_description
-  - if post.author
+  - if post.authors
     By
-    = post.author
+    = post.authors.first.full_name
 

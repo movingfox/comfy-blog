@@ -37,11 +37,6 @@ module Comfy
       def show_readme
         readme 'lib/generators/comfy/blog/README'
       end
-
-      def sync_admin_actions
-        Settings.reload!
-        Permission.sync_and_permit_admins!
-      end
     end
   end
 end
