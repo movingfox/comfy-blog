@@ -43,6 +43,12 @@ class Comfy::Blog::Post < ActiveRecord::Base
   scope :for_month, -> month {
     where(:month => month)
   }
+  scope :by_author, -> author_id {
+    includes(:authors)
+      .where('comfy_blog_authors.id = ?', author_id)
+      .references(:authors)
+  }
+
 
   # -- Callbacks ------------------------------------------------------------
   before_validation :set_slug,

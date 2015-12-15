@@ -1,15 +1,23 @@
 %header
   %h1= post.title
 
-  %p
-    Published on
-    = post.published_at.to_formatted_s(:ordinal)
-
+  .authordetails
+    %span
+      By
+      %strong
+        = link_to @author.full_name, comfy_blog_posts_path(author: @author.id)
+      |
+      = post.published_at.to_formatted_s(:ordinal)
 .blog_entry
   = post.content.html_safe
 
 .blog_author_description
-  - if post.authors
-    By
-    = post.authors.first.full_name
+  .row
+    .col-md-9
+      %p
+        %span.author_name_single_post
+          = @author.full_name
+        %br
+        %span.author_description_single_post
+          = @author.description.html_safe if @author.description
 
