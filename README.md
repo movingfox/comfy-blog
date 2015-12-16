@@ -10,8 +10,7 @@ ComfyBlog is a simple blog management engine for the [ComfortableMexicanLoveseat
 * So if you don't already have these included in your project's Gemfile, add them as follows:
 <pre>
 gem 'comfortable_mexican_loveseat'
-gem 'foxinator-generator',
-  git: 'git@github.com:HitFox/foxinator-generator.git'
+gem 'foxinator-generator', git: 'git@github.com:HitFox/foxinator-generator.git'
 </pre>
 * If you haven't run the foxinator setup command, run `rails g foxinator:setup` and follow all of the steps outlined [here](https://github.com/HitFox/foxinator-generator#usage).
 
@@ -25,7 +24,7 @@ gem 'foxinator-generator',
 Add gem definition to your Gemfile:
 
 <pre>
-gem 'comfy_blog', '0.0.1', git: 'git@github.com:HitFox/comfy-blog.git'
+gem 'comfy_blog', git: 'git@github.com:HitFox/comfy-blog.git'
 </pre>
 
 As mentioned above, the blog depends on our loveseat gem, so if you don't have the loveseat and foxinator gems, please include them in your project's Gemfile:
@@ -45,10 +44,17 @@ Make sure to add these lines in your `config/routes.rb` are at the bottom of the
     comfy_route :blog_admin, :path => 'admin'
     comfy_route :blog, :path => 'blog'
 
-**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank. By default, the blog is under `localhost:3000/blog`. The path field can be used for other blogs in the future. However, it would be yet another parameter after `/blog`, so for example, a second blog for a site would be under `localhost:3000/blog/second-blog`.
+**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank. By default, the blog is under `localhost:3000/en/blog`. The path field can be used for other blogs in the future. However, it would be yet another parameter after `en/blog`, so for example, a second blog for a site would be under `localhost:3000/en/blog/second-blog`.
 
 <h3>Views</h3>
 You should also find view templates in `/app/views/blog` folder. Feel free to adjust them as you see fit.
+
+**Important:** To make sure the SEO data for blog posts works correctly, you must add this within the `<head>` tag in your application layout (written in haml, can be easily converted to regular .erb syntax as well):
+
+    - if content_for?(:blog_seo_data)
+      = content_for(:blog_seo_data)
+    - elsif @cms_page.present?
+      = comfy_seo_tags
 
 ## Known limitations
 
@@ -58,6 +64,8 @@ You should also find view templates in `/app/views/blog` folder. Feel free to ad
 ## Changelog
 
 * Added the ability to manage blog categories in the backend. Can tie blog posts to multiple categories and added a category filter on the front end for blog posts.
+* Added the ability to add authors to be used for blog posts in the back end. Added an author filter on the front end for blog posts as well.
+* Ability to customize SEO tags for individual blog posts has been added. See SEO limitations above.
 
 ---
 

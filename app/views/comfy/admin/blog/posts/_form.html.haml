@@ -1,19 +1,45 @@
 - if Comfy::Blog::Category.all.present?
-  = form.text_field :title, :data => {:slugify => @post.new_record?}
-  = form.text_field :slug, :data => {:slug => true}
-  = form.collection_check_boxes :category_ids, Comfy::Blog::Category.for_blog(@blog), :id, :name, label: "Categories"
-  = form.collection_select :author_ids,
-     Comfy::Blog::Author.for_blog(@blog).order("first_name ASC"),
-     :id, :full_name, {label: "Authors"}, { multiple: false }
-  = form.text_area :content, :data => {'cms-rich-text' => true}
-  = form.text_area :excerpt, :class => 'short'
-  = form.text_field :published_at, :value => @post.published_at.try(:to_s, :db), :data => {'cms-datetime' => true}
-  = form.form_group :is_published do
-    = form.check_box :is_published
+  #form-blocks
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#ns-Post"} Post
+      %li
+        %a{"data-toggle" => "tab", :href => "#ns-SEO"} SEO
+
+    %br
+    .tab-content
+      #ns-Post.active.tab-pane
+        .form-group
+          = form.text_field :title, :data => {:slugify => @post.new_record?}
+          = form.text_field :slug, :data => {:slug => true}
+          = form.collection_check_boxes :category_ids, Comfy::Blog::Category.for_blog(@blog), :id, :name, label: "Categories"
+          = form.collection_select :author_ids,
+             Comfy::Blog::Author.for_blog(@blog).order("first_name ASC"),
+             :id, :full_name, {label: "Authors"}, { multiple: false }
+          = form.text_area :content, :data => {'cms-rich-text' => true}
+          = form.text_area :excerpt, :class => 'short'
+          = form.text_field :published_at, :value => @post.published_at.try(:to_s, :db), :data => {'cms-datetime' => true}
+          = form.form_group :is_published do
+            = form.check_box :is_published
+      #ns-SEO.tab-pane
+        .form-group
+          = form.text_field :seo_title
+          = form.text_field :meta_description
+        .form-group
+          %h2 Social
+          = form.text_field :facebook_title
+          = form.text_field :facebook_description
+          - if @post.facebook_image.present?
+            .form-group
+              = form.label :facebook_image, 'Facebook image', class: "control-label col-sm-2"
+              = link_to image_tag(@post.facebook_image.url(:thumb)), @post.facebook_image.url(:original), target: "blank"
+          = form.file_field :facebook_image, label: 'Upload Facebook image'
 
   = form.form_group :class => 'form-actions' do
     = form.submit :class => 'btn btn-primary'
     = link_to t('.cancel'), comfy_admin_blog_posts_path(@site, @blog), :class => 'btn btn-link'
+
 - else
   %p
     At least one category must be created before a blog post can be written. Please click #{ link_to 'here', new_comfy_admin_blog_category_path(@site, @blog)} to create one.

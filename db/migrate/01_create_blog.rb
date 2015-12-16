@@ -13,17 +13,22 @@ class CreateBlog < ActiveRecord::Migration
     add_index :comfy_blogs, :identifier
 
     create_table :comfy_blog_posts do |t|
-      t.integer   :blog_id,       null: false
-      t.string    :title,         null: false
-      t.string    :slug,          null: false
-      t.text      :content
-      t.text      :excerpt        # used as preview text of a blog post
-      t.integer   :year,          null: false, limit: 4
-      t.integer   :month,         null: false, limit: 2
-      t.boolean   :is_published,  null: false, default: true
-      t.datetime  :published_at,  null: false
+      t.integer       :blog_id,       null: false
+      t.string        :title,         null: false
+      t.string        :slug,          null: false
+      t.text          :content
+      t.text          :excerpt        # used as preview text of a blog post
+      t.integer       :year,          null: false, limit: 4
+      t.integer       :month,         null: false, limit: 2
+      t.boolean       :is_published,  null: false, default: true
+      t.datetime      :published_at,  null: false
+      t.text          :meta_description
+      t.string        :seo_title
+      t.string        :facebook_title
+      t.text          :facebook_description
       t.timestamps
     end
+    add_attachment :comfy_blog_posts, :facebook_image
     add_index :comfy_blog_posts, [:is_published, :year, :month, :slug],
       :name => 'index_blog_posts_on_published_year_month_slug'
     add_index :comfy_blog_posts, [:is_published, :created_at]
