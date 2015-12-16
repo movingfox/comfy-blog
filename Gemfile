@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gemspec
 
 gem 'kaminari'
-gem 'pg'
 
 group :development do
   gem 'awesome_print'

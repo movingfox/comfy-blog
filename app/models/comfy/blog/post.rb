@@ -17,6 +17,8 @@ class Comfy::Blog::Post < ActiveRecord::Base
   has_many :authors,
     through: :comfy_blog_post_authors,
     dependent: :destroy
+  has_attached_file :facebook_image, styles: { thumb: '50x50>' }
+
 
   # -- Validations ----------------------------------------------------------
   validates :blog_id, :title, :slug, :year, :month, :content,
@@ -25,10 +27,7 @@ class Comfy::Blog::Post < ActiveRecord::Base
     :uniqueness => { :scope => [:blog_id, :year, :month] },
     :format => { :with => /\A%*\w[a-z0-9_\-\%]*\z/i }
   validate :at_least_one_category, :at_least_one_author
-
-  before_validation do |model|
-    author_ids.reject!(&:blank?) if author_ids
-  end
+  validates_attachment_content_type :facebook_image, :content_type => /\Aimage\/.*\Z/
 
   # -- Scopes ---------------------------------------------------------------
   default_scope -> {
