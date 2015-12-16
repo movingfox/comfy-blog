@@ -5,7 +5,7 @@
     %span
       By
       %strong
-        = link_to @author.full_name, comfy_blog_posts_path(author: @author.id)
+        = link_to post.authors.first.full_name, comfy_blog_posts_path(author: post.authors.first.id)
       |
       = post.published_at.to_formatted_s(:ordinal)
 .blog_entry
@@ -16,8 +16,8 @@
     .col-md-9
       %p
         %span.author_name_single_post
-          = @author.full_name
+          = post.authors.first.full_name
         %br
         %span.author_description_single_post
-          = @author.description.html_safe if @author.description
+          = post.authors.first.description.html_safe if post.authors.first.description
 

@@ -24,7 +24,9 @@
       .comments
         - @post.comments.published.each do |comment|
           .comment
+            Author:
             .author= comment.author
+            Comment:
             .content= comment.content
             %br
 

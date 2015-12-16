@@ -3,10 +3,6 @@ source 'http://rubygems.org'
 gemspec
 
 gem 'kaminari'
-gem 'pg'
-gem 'paperclip', '~> 4.3'
-gem 'mini_magick'
-
 
 group :development do
   gem 'awesome_print'

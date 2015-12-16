@@ -49,12 +49,15 @@ Make sure to add these lines in your `config/routes.rb` are at the bottom of the
 <h3>Views</h3>
 You should also find view templates in `/app/views/blog` folder. Feel free to adjust them as you see fit.
 
-**Important:** To make sure the SEO data for blog posts works correctly, you must add this within the `<head>` tag in your application layout (written in haml, can be easily converted to regular .erb syntax as well):
+<h3>SEO</h3>
+**Important:** To make sure the SEO data for blog posts works correctly, you must add this within the `<head>` tag in your application layout file (written in haml, can be easily converted to regular .erb syntax as well):
 
     - if content_for?(:blog_seo_data)
       = content_for(:blog_seo_data)
     - elsif @cms_page.present?
       = comfy_seo_tags
+
+* If you have any other meta or SEO tags, wrap them in a `unless content_for?(:blog_seo_data)` conditional, to make sure the SEO data added for blog posts takes precedence. Looking for better alternatives to this, all suggestions are welcome!
 
 ## Known limitations
 
