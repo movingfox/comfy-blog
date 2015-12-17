@@ -26,9 +26,20 @@ class CreateBlog < ActiveRecord::Migration
       t.string        :seo_title
       t.string        :facebook_title
       t.text          :facebook_description
+      t.string        :gplus_name
+      t.text          :gplus_description
+      t.string        :twitter_site
+      t.string        :twitter_creator
+      t.string        :twitter_title
+      t.text          :twitter_description
+
       t.timestamps
     end
+    # SEO images
     add_attachment :comfy_blog_posts, :facebook_image
+    add_attachment :comfy_blog_posts, :gplus_image
+    add_attachment :comfy_blog_posts, :twitter_image
+
     add_index :comfy_blog_posts, [:is_published, :year, :month, :slug],
       :name => 'index_blog_posts_on_published_year_month_slug'
     add_index :comfy_blog_posts, [:is_published, :created_at]
