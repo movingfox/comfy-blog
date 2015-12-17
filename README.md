@@ -27,7 +27,7 @@ gem 'foxinator-generator', git: 'git@github.com:HitFox/foxinator-generator.git'
 Add gem definition to your Gemfile:
 
 <pre>
-gem 'comfy_blog', '0.0.3', git: 'git@github.com:HitFox/comfy-blog.git'
+gem 'comfy_blog', '0.1.0', git: 'git@github.com:HitFox/comfy-blog.git'
 </pre>
 
 As mentioned above, the blog depends on our loveseat gem, so if you don't have the loveseat and foxinator gems, please include them in your project's Gemfile:
