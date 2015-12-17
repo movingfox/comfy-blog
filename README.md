@@ -24,7 +24,7 @@ gem 'foxinator-generator', git: 'git@github.com:HitFox/foxinator-generator.git'
 Add gem definition to your Gemfile:
 
 <pre>
-gem 'comfy_blog', git: 'git@github.com:HitFox/comfy-blog.git'
+gem 'comfy_blog', '0.0.3', git: 'git@github.com:HitFox/comfy-blog.git'
 </pre>
 
 As mentioned above, the blog depends on our loveseat gem, so if you don't have the loveseat and foxinator gems, please include them in your project's Gemfile:
@@ -58,6 +58,10 @@ You should also find view templates in `/app/views/blog` folder. Feel free to ad
       = comfy_seo_tags
 
 * If you have any other meta or SEO tags, wrap them in a `unless content_for?(:blog_seo_data)` conditional, to make sure the SEO data added for blog posts takes precedence. Looking for better alternatives to this, all suggestions are welcome!
+
+## Other configuration
+
+* You can adjust how many blogs posts show up on one page by editing the `config.posts_per_page` option, in the `config/intializers/comfy_blog.rb` file that's generated in your application.
 
 ## Known limitations
 
