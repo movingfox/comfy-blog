@@ -16,8 +16,11 @@ gem 'foxinator-generator', git: 'git@github.com:HitFox/foxinator-generator.git'
 
 ## Blog Features
 
-* Ability to set up multiple blogs per site
+* Ability to set up one blog per site
 * User defined layout per blog
+* Ability to add categories and authors
+* Filtering blog posts by category and author on the front end
+* SEO optimization for each blog post
 
 ## Installation
 
@@ -38,13 +41,15 @@ Then from the Rails project's root run:
 
 The last command has to be run since we're creating custom models for admins to manage in the CMS. So the permissions for admins have to be updated correctly. If you don't see the correct sections in the cms admin panel under Blog, you could also try clicking "Sync" on the UI.
 
+**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank. By default, the blog is under `localhost:3000/en/blog`. The path field can be used for other blogs in the future. However, it would be yet another parameter after `en/blog`, so for example, a second blog for a site would be under `localhost:3000/en/blog/second-blog`.
+
+The better approach is to just create one blog per site created in the CMS.
+
 <h3>Routes</h3>
 Make sure to add these lines in your `config/routes.rb` are at the bottom of the `scope ':locale' do` block:
 
     comfy_route :blog_admin, :path => 'admin'
     comfy_route :blog, :path => 'blog'
-
-**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank. By default, the blog is under `localhost:3000/en/blog`. The path field can be used for other blogs in the future. However, it would be yet another parameter after `en/blog`, so for example, a second blog for a site would be under `localhost:3000/en/blog/second-blog`.
 
 <h3>Views</h3>
 You should also find view templates in `/app/views/blog` folder. Feel free to adjust them as you see fit.
