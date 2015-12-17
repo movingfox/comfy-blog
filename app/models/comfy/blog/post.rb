@@ -18,6 +18,8 @@ class Comfy::Blog::Post < ActiveRecord::Base
     through: :comfy_blog_post_authors,
     dependent: :destroy
   has_attached_file :facebook_image, styles: { thumb: '50x50>' }
+  has_attached_file :gplus_image, styles: { thumb: '50x50>' }
+  has_attached_file :twitter_image, styles: { thumb: '120x120>' }
 
 
   # -- Validations ----------------------------------------------------------
@@ -28,6 +30,8 @@ class Comfy::Blog::Post < ActiveRecord::Base
     :format => { :with => /\A%*\w[a-z0-9_\-\%]*\z/i }
   validate :at_least_one_category, :at_least_one_author
   validates_attachment_content_type :facebook_image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :gplus_image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :twitter_image, :content_type => /\Aimage\/.*\Z/
 
   # -- Scopes ---------------------------------------------------------------
   default_scope -> {
