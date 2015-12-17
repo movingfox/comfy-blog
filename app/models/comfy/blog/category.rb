@@ -10,7 +10,10 @@ class Comfy::Blog::Category < ActiveRecord::Base
   validates :name, :blog_id,
     presence: true
   validates :name,
-    uniqueness: true
+    uniqueness: {
+      scope: :blog,
+      message: "This blog already has a category with this name"
+    }
 
   # Class methods
   class << self
