@@ -1,5 +1,6 @@
 .page-header
-  = link_to t('.new_blog'), new_comfy_admin_blog_path(@site), :class => 'btn btn-default pull-right'
+  - unless @site.blogs.present?
+    = link_to t('.new_blog'), new_comfy_admin_blog_path(@site), :class => 'btn btn-default pull-right'
   %h2= t('.page_title')
 
 = comfy_paginate @blogs
