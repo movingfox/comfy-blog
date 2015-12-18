@@ -29,12 +29,30 @@
         .form-group
           %h2 Social
           = form.text_field :facebook_title
-          = form.text_field :facebook_description
+          = form.text_area :facebook_description
           - if @post.facebook_image.present?
             .form-group
               = form.label :facebook_image, 'Facebook image', class: "control-label col-sm-2"
               = link_to image_tag(@post.facebook_image.url(:thumb)), @post.facebook_image.url(:original), target: "blank"
           = form.file_field :facebook_image, label: 'Upload Facebook image'
+
+          = form.text_field :gplus_name, label: "Google+ name"
+          = form.text_area :gplus_description, label: "Google+ description"
+          - if @post.gplus_image.present?
+            .form-group
+              = form.label :gplus_image, 'Google+ image', class: "control-label col-sm-2"
+              = link_to image_tag(@post.gplus_image.url(:thumb)), @post.gplus_image.url(:original), target: "blank"
+          = form.file_field :gplus_image, label: 'Upload Google+ image'
+
+          = form.text_field :twitter_site
+          = form.text_field :twitter_creator
+          = form.text_field :twitter_title
+          = form.text_area :twitter_description
+          - if @post.twitter_image.present?
+            .form-group
+              = form.label :twitter_image, 'Twitter image', class: "control-label col-sm-2"
+              = link_to image_tag(@post.twitter_image.url(:thumb)), @post.twitter_image.url(:original), target: "blank"
+          = form.file_field :twitter_image, label: 'Upload Twitter image'
 
   = form.form_group :class => 'form-actions' do
     = form.submit :class => 'btn btn-primary'
