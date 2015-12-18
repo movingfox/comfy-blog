@@ -37,22 +37,24 @@ Then from the Rails project's root run:
     bundle install
     rails generate comfy:blog
     rake db:migrate
-    rake admins:permit
 
-The last command has to be run since we're creating custom models for admins to manage in the CMS. So the permissions for admins have to be updated correctly. If you don't see the correct sections in the cms admin panel under Blog, you could also try clicking "Sync" on the UI.
-
-**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank. By default, the blog is under `localhost:3000/en/blog`. The path field can be used for other blogs in the future. However, it would be yet another parameter after `en/blog`, so for example, a second blog for a site would be under `localhost:3000/en/blog/second-blog`.
-
-The better approach is to just create one blog per site created in the CMS.
-
-<h3>Routes</h3>
-Make sure to add these lines in your `config/routes.rb` are at the bottom of the `scope ':locale' do` block:
+Add these lines in your `config/routes.rb` file:
 
     comfy_route :blog_admin, :path => 'admin'
     comfy_route :blog, :path => 'blog'
 
+**NOTE:** Depending on the setup of your app, you need to know where these routes should be placed wihtin the routes file. If you have a `locale:` scope, it should go on the bottom of the scope. Sometimes it's necessary to put these lines above the root path, so the blog posts controller is able to load the posts. Either way, make sure your app's routing is setup correctly, so that the blog can load.
+
+Finally, if you don't have an admin user set up already, run `rake admins:create && rake admins:permit`.
+
+When you login into `localhost:3000/en/admin`, make sure to click the "Sync" button to see the 'Blogs' section within the admin panel.
+
+**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank.
+
 <h3>Views</h3>
-You should also find view templates in `/app/views/blog` folder. Feel free to adjust them as you see fit.
+You should also find view templates in `/app/views/comfy/blog` folder. Feel free to adjust them as you see fit.
+
+If you want to use something other than our default comment form on the blog posts, you can remove the bottom part of the `/views/comfy/blog/posts/show.html.haml` that has to do with the comments. Also, you can delete the `views/comfy/blog/comments` directory.
 
 <h3>SEO</h3>
 **Important:** To make sure the SEO data for blog posts works correctly, you must add this within the `<head>` tag in your application layout file (written in haml, can be easily converted to regular .erb syntax as well):
@@ -70,10 +72,13 @@ You should also find view templates in `/app/views/blog` folder. Feel free to ad
 
 ## Known limitations
 
+* The original gem doesn't support multilingual blogs. Also, multiple blogs per site won't work correctly. If you have multiple sites, more than one language or need more than one blog, it will take some hacking of the routes and comfy controllers (e.g. `Comfy::Cms::BaseController`) to get that working. AppLift could be used as an example.
 * SEO data will not work for the blog home page, unless there is at least one page created under the Sites tab in the CMS. The SEO logic only works for the blog posts pages.
 * It seems as though when you create more than one blog for a site, the blog lookup gets messed up. So if there is one blog per site, then everything works correctly (which has been the use case every time we've used the original verison of the gem).
 
 ## Changelog
+
+### 1.13.0 / 21-12-2015
 
 * Added the ability to manage blog categories in the backend. Can tie blog posts to multiple categories and added a category filter on the front end for blog posts.
 * Added the ability to add authors to be used for blog posts in the back end. Added an author filter on the front end for blog posts as well.
