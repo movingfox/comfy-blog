@@ -1,5 +1,5 @@
-= form.text_field :label, :data => {:slugify => @blog.new_record?}
-= form.text_field :identifier, :data => {:slug => true}
+= form.text_field :label, label: "Label*"
+= form.text_field :identifier, label: "Identifier*", :data => {:slug => true}
 = form.text_field :path
 
 - if (options = Comfy::Cms::Layout.app_layouts_for_select).present?

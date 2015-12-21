@@ -3,8 +3,8 @@
   -# don't need this when installed into your app
   = form.hidden_field :authenticity_token, :value => form_authenticity_token
 
-  = form.text_field :author
-  = form.text_field :email
-  = form.text_area :content
+  = form.text_field :author, label: "Author*"
+  = form.text_field :email, label: "Email*"
+  = form.text_area :content, label: "Your comment*"
 
   = form.submit 'Submit'

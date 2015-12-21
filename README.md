@@ -43,21 +43,9 @@ Add these lines in your `config/routes.rb` file:
     comfy_route :blog_admin, :path => 'admin'
     comfy_route :blog, :path => 'blog'
 
-**NOTE:** Depending on the setup of your app, you need to know where these routes should be placed wihtin the routes file. If you have a `locale:` scope, it should go on the bottom of the scope. Sometimes it's necessary to put these lines above the root path, so the blog posts controller is able to load the posts. Either way, make sure your app's routing is setup correctly, so that the blog can load.
+**NOTE:** Depending on the setup of your app, you need to know where these routes should be placed. If you have a required `locale:` scope, it should go on the bottom of the scope. If you have one language for your site, but still have a locale scope, you have to make it optional and set a default like so: `scope '(:locale)', defaults: { locale: "en" } do ... end`. When you put the above two lines within the scope now, you can have the blog under `mysite.com/blog` instead of `mysite.com/en/blog`.
 
-Finally, if you don't have an admin user set up already, run `rake admins:create && rake admins:permit`.
-
-When you login into `localhost:3000/en/admin`, make sure to click the "Sync" button to see the 'Blogs' section within the admin panel.
-
-**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank.
-
-<h3>Views</h3>
-You should also find view templates in `/app/views/comfy/blog` folder. Feel free to adjust them as you see fit.
-
-If you want to use something other than our default comment form on the blog posts, you can remove the bottom part of the `/views/comfy/blog/posts/show.html.haml` that has to do with the comments. Also, you can delete the `views/comfy/blog/comments` directory.
-
-<h3>SEO</h3>
-**Important:** To make sure the SEO data for blog posts works correctly, you must add this within the `<head>` tag in your application layout file (written in haml, can be easily converted to regular .erb syntax as well):
+Add the following conditional within the `<head>` tag in your application layout file (written in haml, can be easily converted to regular erb):
 
     - if content_for?(:blog_seo_data)
       = content_for(:blog_seo_data)
@@ -65,6 +53,17 @@ If you want to use something other than our default comment form on the blog pos
       = comfy_seo_tags
 
 * If you have any other meta or SEO tags, wrap them in a `unless content_for?(:blog_seo_data)` conditional, to make sure the SEO data added for blog posts takes precedence. Looking for better alternatives to this, all suggestions are welcome!
+
+Finally, if you don't have an admin user set up already, run `rake admins:create && rake admins:permit`.
+
+When you login into `localhost:3000/en/admin`, make sure to click the "Sync" button to see the 'Blogs' section within the admin panel.
+
+**Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank.
+
+## Views
+You should also find view templates in `/app/views/comfy/blog` folder. Feel free to adjust them as you see fit.
+
+If you want to use something other than our default comment form on the blog posts, you can remove the bottom part of the `/views/comfy/blog/posts/show.html.haml` that has to do with the comments. Also, you can delete the `views/comfy/blog/comments` directory.
 
 ## Other configuration
 
