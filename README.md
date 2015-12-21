@@ -54,9 +54,9 @@ Add the following conditional within the `<head>` tag in your application layout
 
 * If you have any other meta or SEO tags, wrap them in a `unless content_for?(:blog_seo_data)` conditional, to make sure the SEO data added for blog posts takes precedence. Looking for better alternatives to this, all suggestions are welcome!
 
-Finally, if you don't have an admin user set up already, run `rake admins:create && rake admins:permit`.
+If you don't have an admin user set up already, run `rake admins:create && rake admins:permit`.
 
-When you login into `localhost:3000/en/admin`, make sure to click the "Sync" button to see the 'Blogs' section within the admin panel.
+When you login into `localhost:3000/en/admin`, make sure to click the "Sync" button to see the 'Blogs' section within the admin panel, under Sites.
 
 **Important:** When creating a blog in the CMS admin panel, make sure to leave the 'Path' field blank.
 
@@ -76,6 +76,10 @@ If you want to use something other than our default comment form on the blog pos
 * It seems as though when you create more than one blog for a site, the blog lookup gets messed up. So if there is one blog per site, then everything works correctly (which has been the use case every time we've used the original verison of the gem).
 
 ## Changelog
+
+### 1.13.1 / 21-12-2015
+* Add asterisks to required blog module fields
+* Update instructions and limitations
 
 ### 1.13.0 / 21-12-2015
 
