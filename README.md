@@ -28,7 +28,7 @@ Add gem definition to your Gemfile:
 
     gem 'comfy_blog',
       git: 'git@github.com:HitFox/comfy-blog.git',
-      tag: 'v1.13.0'
+      tag: 'v1.13.1'
 
 As mentioned above, the blog depends on our loveseat gem, so if you don't have the loveseat and foxinator gems, please include them in your project's Gemfile:
 
