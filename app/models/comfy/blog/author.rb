@@ -13,10 +13,4 @@ class Comfy::Blog::Author < ActiveRecord::Base
   def full_name
     "#{ first_name } #{ last_name }"
   end
-
-  class << self
-    def for_blog(blog)
-      where(blog_id: blog.id)
-    end
-  end
 end

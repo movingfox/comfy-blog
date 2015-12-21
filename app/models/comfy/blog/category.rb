@@ -14,11 +14,4 @@ class Comfy::Blog::Category < ActiveRecord::Base
       scope: :blog,
       message: "This blog already has a category with this name"
     }
-
-  # Class methods
-  class << self
-    def for_blog(blog)
-      where(blog_id: blog.id)
-    end
-  end
 end
