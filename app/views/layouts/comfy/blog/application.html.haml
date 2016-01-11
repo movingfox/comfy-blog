@@ -2,10 +2,6 @@
 %html
   %head
     %title Comfy Blog
-    - if content_for?(:blog_seo_data)
-      = content_for(:blog_seo_data)
-    - else
-      = comfy_seo_tags
   %body
     = yield
 
