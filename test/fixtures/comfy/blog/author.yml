@@ -1,0 +1,5 @@
+default:
+  blog: default
+  first_name: John
+  last_name: Smith
+  description: Really cool author!

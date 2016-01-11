@@ -11,7 +11,8 @@ class BlogPostsTest < ActiveSupport::TestCase
   def test_validations
     post = Comfy::Blog::Post.new
     assert post.invalid?
-    assert_errors_on post, :blog_id, :title, :slug, :content
+    assert_errors_on post, :blog_id, :title, :slug, :content,
+      :category_ids, :author_ids
   end
 
   def test_validation_of_slug_uniqueness
@@ -19,7 +20,9 @@ class BlogPostsTest < ActiveSupport::TestCase
     old_post.update_attributes!(:published_at => Time.now)
     post = comfy_blog_blogs(:default).posts.new(
       :title    => old_post.title,
-      :content  => 'Test Content'
+      :content  => 'Test Content',
+      :authors     => [Comfy::Blog::Author.first],
+      :categories  => [Comfy::Blog::Category.first]
     )
     assert post.invalid?
     assert_errors_on post, [:slug]
@@ -32,7 +35,9 @@ class BlogPostsTest < ActiveSupport::TestCase
     post = comfy_blog_blogs(:default).posts.new(
       :title    => 'Test Title',
       :slug     => 'test%slug',
-      :content  => 'Test Content'
+      :content  => 'Test Content',
+      :authors     => [Comfy::Blog::Author.first],
+      :categories  => [Comfy::Blog::Category.first]
     )
     assert post.valid?
   end
@@ -40,8 +45,10 @@ class BlogPostsTest < ActiveSupport::TestCase
   def test_creation
     assert_difference 'Comfy::Blog::Post.count' do
       post = comfy_blog_blogs(:default).posts.create!(
-        :title    => 'Test Post',
-        :content  => 'Test Content'
+        :title       => 'Test Post',
+        :content     => 'Test Content',
+        :authors     => [Comfy::Blog::Author.first],
+        :categories  => [Comfy::Blog::Category.first]
       )
       assert_equal 'test-post', post.slug
       assert_equal Time.now.year, post.year
