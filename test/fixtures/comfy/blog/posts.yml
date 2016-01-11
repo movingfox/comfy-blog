@@ -7,3 +7,9 @@ default:
   year: 2012
   month: 1
   published_at: <%= 2.days.ago %>
+  facebook_image_file_name:
+  facebook_image_content_type:
+  facebook_image_file_size:
+  facebook_image_updated_at: <%= 2.days.ago %>
+  categories: default
+  authors: default

@@ -1,23 +1,25 @@
 uk:
   activerecord:
     models:
-      comfy/blog/blog: Блог
-      comfy/blog/post: Запись блога
+      comfy/blog/blog: Blog
+      comfy/blog/post: Post
       comfy/blog/comment: Comment
+      comfy/blog/author: Author
+      comfy/blog/category: Category
     attributes:
       comfy/blog/blog:
         identifier: Identifier
         label: Label
-        path: Путь
-        app_layout: Шаблон приложения
-        description: Описание
+        path: Path
+        app_layout: App layout
+        description: Description
       comfy/blog/post:
-        title: Название
+        title: Title
         slug: Slug
-        author: Автор
+        author: Author
         excerpt: Excerpt
-        published_at: Опубликовано в
-        is_published: Опубликовано
+        published_at: Published at
+        is_published: Is published
       comfy/blog/comment:
         author: Author
         email: Email
@@ -26,23 +28,29 @@ uk:
         created_at: Created at
 
   comfy:
+    views:
+      blog:
+        posts:
+          related_posts: Related Posts
     admin:
       cms:
         base:
-          blogs: Блоги
-          posts: Записи блога
-          comments: Комментарии
+          blogs: Blogs
+          posts: Posts
+          comments: Comments
+          categories: Categories
+          authors: Authors
       blog:
         blogs:
-          not_found: Блог не найден
-          created: Блог создан
-          create_failure: Не удалось создать блог
-          updated: Блог обновлен
-          update_failure: Не удалось обновить блог
-          deleted: Блог удален
+          not_found: Blog not found
+          created: Blog created
+          create_failure: Failed to create Blog
+          updated: Blog updated
+          update_failure: Failed to update Blog
+          deleted: Blog deleted
           index:
-            page_title: Блоги
-            new_blog: Новый блог
+            page_title: Blogs
+            new_blog: New Blog
             post_count:
               zero: No Posts
               one: '%{count} Post'
@@ -55,53 +63,96 @@ uk:
               few: '%{count} Comments'
               many: '%{count} Comments'
               other: '%{count} Comments'
-            edit: Редактировать
-            delete: Удалить
-            confirm_message: Вы уверены?
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
           edit:
-            page_title: Редактировать блог
+            page_title: Edit blog
           new:
-            page_title: Новый блог
+            page_title: New blog
           form:
             cancel: Cancel
         posts:
-          created: Запись блога создана
-          create_failure: Не удалось создать запись блога
-          updated: Запись блога обновлена
-          update_failure: Не удалось обновить запись блога
-          deleted: Запись блога удалена
-          not_found: Запись блога не найдена
+          created: Blog Post created
+          create_failure: Failed to create Blog Post
+          updated: Blog Post updated
+          update_failure: Failed to update Blog Post
+          deleted: Blog Post removed
+          not_found: Blog Post not found
           index:
-            page_title: Записи блога
-            new_blog_post: Создать запись блога
-            title: Название
-            author: Автор
-            published: Опубликовано
-            comments: Комментарии
+            page_title: Blog posts
+            new_blog_post: New blog post
+            title: Title
+            author: Author
+            published: Published
+            comments: Comments
             comment_count:
               <<: *comment_count
-            edit: Редактировать
-            delete: Удалить
-            confirm_message: Вы уверены?
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
           new:
-            page_title: Новая запись блога
+            page_title: New blog post
           edit:
-            page_title: Редактирование записи блога
+            page_title: Edit blog post
           form:
             cancel: Cancel
+
         comments:
-          created: Комментарий создан
-          create_failure: Не удалось создать комментарий
-          deleted: Комментарий удален
-          not_found: Комментарий не найден
+          created: Comment created
+          create_failure: Failed to create Comment
+          deleted: Comment deleted
+          not_found: Comment not found
           index:
-            page_title: Комментарии к блогу
-            post: Запись блога
-            comment: Комметарий
-            posted: Опубликован
-            status: Статус
+            page_title: Blog comments
+            post: Blog posts
+            comment: Comment
+            posted: Posted
+            status: Status
           comment:
-            unpublish: Отменить публикацию
-            publish: Опубликовать
-            delete: Удалить
-            confirm_message: Вы уверены?
+            unpublish: Unpublish
+            publish: Publish
+            delete: Delete
+            confirm_message: Are you sure?
+        categories:
+          created: Category created
+          create_failure: Failed to create category
+          updated: Category updated
+          update_failure: Failed to update category
+          deleted: Category removed
+          delete_failure: Category could not be removed
+          not_found: Category not found
+          index:
+            page_title: Blog categories
+            new_category: New category
+            name: Name
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
+          new:
+            page_title: New category
+          edit:
+            page_title: Edit category
+          form:
+            cancel: Cancel
+        authors:
+          created: Author created
+          create_failure: Failed to create author
+          updated: Author updated
+          update_failure: Failed to update author
+          deleted: Author removed
+          delete_failure: Author could not be removed
+          not_found: Author not found
+          index:
+            page_title: Blog authors
+            new_category: New author
+            name: Name
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
+          new:
+            page_title: New author
+          edit:
+            page_title: Edit category
+          form:
+            cancel: Cancel

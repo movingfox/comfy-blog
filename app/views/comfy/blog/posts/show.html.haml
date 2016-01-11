@@ -7,7 +7,7 @@
       = render 'comfy/blog/posts/post', post: @post
 
       .related_posts
-        %h2= t('related_posts')
+        %h2= t('comfy.views.blog.posts.related_posts')
         %ul
           - if @post.related_posts.present?
             - @post.related_posts.each do |post|

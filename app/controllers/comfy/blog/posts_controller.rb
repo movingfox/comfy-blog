@@ -42,6 +42,9 @@ class Comfy::Blog::PostsController < Comfy::Blog::BaseController
       else
         redirect_to comfy_blog_posts_path(blog_path: @blog.path) and return
       end
+    elsif params[:year]
+      scope = @blog.posts.published.for_year(params[:year])
+      params[:month] ? scope.for_month(params[:month]) : scope
     else
       @blog.posts.published.order(published_at: :desc)
     end

@@ -2,106 +2,157 @@ de:
   activerecord:
     models:
       comfy/blog/blog: Blog
-      comfy/blog/post: Beitrag
-      comfy/blog/comment: Kommentar
+      comfy/blog/post: Post
+      comfy/blog/comment: Comment
+      comfy/blog/author: Author
+      comfy/blog/category: Category
     attributes:
       comfy/blog/blog:
-        identifier: Identifikator
-        label: Beschriftung
-        path: Pfad
-        app_layout: App Layout
-        description: Beschreibung
+        identifier: Identifier
+        label: Label
+        path: Path
+        app_layout: App layout
+        description: Description
       comfy/blog/post:
-        title: Titel
-        slug: URL-Teil
-        author: Autor
-        excerpt: Auszug
-        published_at: Veröffentlicht am
-        is_published: Ist veröffentlicht
+        title: Title
+        slug: Slug
+        author: Author
+        excerpt: Excerpt
+        published_at: Published at
+        is_published: Is published
       comfy/blog/comment:
-        author: Autor
-        email: E-Mail
-        content: Inhalt
-        is_published: Ist veröffentlicht
-        created_at: Erstellt am
+        author: Author
+        email: Email
+        content: Content
+        is_published: Is published
+        created_at: Created at
 
   comfy:
+    views:
+      blog:
+        posts:
+          related_posts: Related Posts
     admin:
       cms:
         base:
           blogs: Blogs
-          posts: Beiträge
-          comments: Kommentare
+          posts: Posts
+          comments: Comments
+          categories: Categories
+          authors: Authors
       blog:
         blogs:
-          not_found: Blog nicht gefunden
-          created: Blog erstellt
-          create_failure: Erstellung des Blogs fehlgeschlagen
-          updated: Blog aktualisiert
-          update_failure: Aktualisierung des Blogs fehlgeschlagen
-          deleted: Blog gelöscht
+          not_found: Blog not found
+          created: Blog created
+          create_failure: Failed to create Blog
+          updated: Blog updated
+          update_failure: Failed to update Blog
+          deleted: Blog deleted
           index:
             page_title: Blogs
-            new_blog: Neues Blog
+            new_blog: New Blog
             post_count:
-              zero: Keine Beiträge
-              one: '%{count} Beitrag'
-              few: '%{count} Beiträge'
-              many: '%{count} Beiträge'
-              other: '%{count} Beiträge'
+              zero: No Posts
+              one: '%{count} Post'
+              few: '%{count} Posts'
+              many: '%{count} Posts'
+              other: '%{count} Posts'
             comment_count: &comment_count
-              zero: Keine Kommentare
-              one: '%{count} Kommentar'
-              few: '%{count} Kommentare'
-              many: '%{count} Kommentare'
-              other: '%{count} Kommentare'
-            edit: Ändern
-            delete: Löschen
-            confirm_message: Sind Sie sicher?
+              zero: No Comments
+              one: '%{count} Comment'
+              few: '%{count} Comments'
+              many: '%{count} Comments'
+              other: '%{count} Comments'
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
           edit:
-            page_title: Blog ändern
+            page_title: Edit blog
           new:
-            page_title: Neues Blog
+            page_title: New blog
           form:
-            cancel: Abbrechen
+            cancel: Cancel
         posts:
-          created: Blogbeitrag erstellt
-          create_failure: Erstellung des Blogbeitrags fehlgeschlagen
-          updated: Blogbeitrag aktualisiert
-          update_failure: Aktualisierung des Blogbeitrags fehlgeschlagen
-          deleted: Blogbeitrag gelöscht
-          not_found: Blogbeitrag nicht gefunden
+          created: Blog Post created
+          create_failure: Failed to create Blog Post
+          updated: Blog Post updated
+          update_failure: Failed to update Blog Post
+          deleted: Blog Post removed
+          not_found: Blog Post not found
           index:
-            page_title: Blogbeiträge
-            new_blog_post: Neuer Blogbeitrag
-            title: Titel
-            author: Autor
-            published: Veröffentlicht
-            comments: Kommentare
+            page_title: Blog posts
+            new_blog_post: New blog post
+            title: Title
+            author: Author
+            published: Published
+            comments: Comments
             comment_count:
               <<: *comment_count
-            edit: Ändern
-            delete: Löschen
-            confirm_message: Sind Sie sicher?
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
           new:
-            page_title: Neuer Blogbeitrag
+            page_title: New blog post
           edit:
-            page_title: Blogbeitrag ändern
+            page_title: Edit blog post
           form:
-            cancel: Abbrechen
+            cancel: Cancel
+
         comments:
-          created: Kommentar hinzugefügt
-          create_failure: Hinzufügen des Kommentars fehlgeschlagen
-          deleted: Kommentar gelöscht
-          not_found: Kommentar nicht gefunden
+          created: Comment created
+          create_failure: Failed to create Comment
+          deleted: Comment deleted
+          not_found: Comment not found
           index:
-            page_title: Blogkommentare
-            post: Blogbeiträge
-            comment: Kommentar
-            posted: Abgegeben
+            page_title: Blog comments
+            post: Blog posts
+            comment: Comment
+            posted: Posted
             status: Status
           comment:
-            unpublish: Veröffentlichung aufheben
-            publish: Veröffentlichen
-            delete: Löschen
-            confirm_message: Sind Sie sicher?
+            unpublish: Unpublish
+            publish: Publish
+            delete: Delete
+            confirm_message: Are you sure?
+        categories:
+          created: Category created
+          create_failure: Failed to create category
+          updated: Category updated
+          update_failure: Failed to update category
+          deleted: Category removed
+          delete_failure: Category could not be removed
+          not_found: Category not found
+          index:
+            page_title: Blog categories
+            new_category: New category
+            name: Name
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
+          new:
+            page_title: New category
+          edit:
+            page_title: Edit category
+          form:
+            cancel: Cancel
+        authors:
+          created: Author created
+          create_failure: Failed to create author
+          updated: Author updated
+          update_failure: Failed to update author
+          deleted: Author removed
+          delete_failure: Author could not be removed
+          not_found: Author not found
+          index:
+            page_title: Blog authors
+            new_category: New author
+            name: Name
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
+          new:
+            page_title: New author
+          edit:
+            page_title: Edit category
+          form:
+            cancel: Cancel
