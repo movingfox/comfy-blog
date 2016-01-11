@@ -145,7 +145,7 @@ ja:
           not_found: Author not found
           index:
             page_title: Blog authors
-            new_category: New author
+            new_author: New author
             name: Name
             edit: Edit
             delete: Delete
@@ -153,6 +153,6 @@ ja:
           new:
             page_title: New author
           edit:
-            page_title: Edit category
+            page_title: Edit author
           form:
             cancel: Cancel
