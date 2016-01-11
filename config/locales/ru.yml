@@ -4,6 +4,9 @@ ru:
       comfy/blog/blog: Блог
       comfy/blog/post: Запись блога
       comfy/blog/comment: Comment
+      comfy/blog/author:
+      comfy/blog/category:
+
     attributes:
       comfy/blog/blog:
         identifier: Identifier
@@ -26,12 +29,18 @@ ru:
         created_at: Created at
 
   comfy:
+    views:
+      blog:
+        posts:
+          related_posts: Related Posts
     admin:
       cms:
         base:
           blogs: Блоги
           posts: Записи блога
           comments: Комментарии
+          categories: Kатегории
+          authors: Авторы
       blog:
         blogs:
           not_found: Блог не найден
@@ -105,3 +114,45 @@ ru:
             publish: Опубликовать
             delete: Удалить
             confirm_message: Вы уверены?
+        categories:
+          created:
+          create_failure:
+          updated:
+          update_failure:
+          deleted:
+          delete_failure:
+          not_found:
+          index:
+            page_title:
+            new_category:
+            name:
+            edit:
+            delete:
+            confirm_message:
+          new:
+            page_title:
+          edit:
+            page_title:
+          form:
+            cancel:
+        authors:
+          created:
+          create_failure:
+          updated:
+          update_failure:
+          deleted:
+          delete_failure:
+          not_found:
+          index:
+            page_title:
+            new_category:
+            name:
+            edit:
+            delete:
+            confirm_message:
+          new:
+            page_title:
+          edit:
+            page_title:
+          form:
+            cancel:

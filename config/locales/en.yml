@@ -4,6 +4,8 @@ en:
       comfy/blog/blog: Blog
       comfy/blog/post: Post
       comfy/blog/comment: Comment
+      comfy/blog/author: Author
+      comfy/blog/category: Category
     attributes:
       comfy/blog/blog:
         identifier: Identifier
@@ -26,6 +28,10 @@ en:
         created_at: Created at
 
   comfy:
+    views:
+      blog:
+        posts:
+          related_posts: Related Posts
     admin:
       cms:
         base:
@@ -33,6 +39,7 @@ en:
           posts: Posts
           comments: Comments
           categories: Categories
+          authors: Authors
       blog:
         blogs:
           not_found: Blog not found

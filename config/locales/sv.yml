@@ -4,6 +4,8 @@ sv:
       comfy/blog/blog: Blog
       comfy/blog/post: Post
       comfy/blog/comment: Comment
+      comfy/blog/author: Author
+      comfy/blog/category: Category
     attributes:
       comfy/blog/blog:
         identifier: Identifier
@@ -26,12 +28,18 @@ sv:
         created_at: Created at
 
   comfy:
+    views:
+      blog:
+        posts:
+          related_posts: Related Posts
     admin:
       cms:
         base:
           blogs: Blogs
           posts: Posts
           comments: Comments
+          categories: Categories
+          authors: Authors
       blog:
         blogs:
           not_found: Blog not found
@@ -89,6 +97,7 @@ sv:
             page_title: Edit blog post
           form:
             cancel: Cancel
+
         comments:
           created: Comment created
           create_failure: Failed to create Comment
@@ -105,3 +114,45 @@ sv:
             publish: Publish
             delete: Delete
             confirm_message: Are you sure?
+        categories:
+          created: Category created
+          create_failure: Failed to create category
+          updated: Category updated
+          update_failure: Failed to update category
+          deleted: Category removed
+          delete_failure: Category could not be removed
+          not_found: Category not found
+          index:
+            page_title: Blog categories
+            new_category: New category
+            name: Name
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
+          new:
+            page_title: New category
+          edit:
+            page_title: Edit category
+          form:
+            cancel: Cancel
+        authors:
+          created: Author created
+          create_failure: Failed to create author
+          updated: Author updated
+          update_failure: Failed to update author
+          deleted: Author removed
+          delete_failure: Author could not be removed
+          not_found: Author not found
+          index:
+            page_title: Blog authors
+            new_category: New author
+            name: Name
+            edit: Edit
+            delete: Delete
+            confirm_message: Are you sure?
+          new:
+            page_title: New author
+          edit:
+            page_title: Edit category
+          form:
+            cancel: Cancel
