@@ -93,13 +93,13 @@ class CreateBlog < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :comfy_blogs
-    drop_table :comfy_blog_posts
-    drop_table :comfy_blog_comments
-    drop_table :comfy_blog_categories
-    drop_table :comfy_blog_post_categories
-    drop_table :comfy_blog_authors
     drop_table :comfy_blog_post_authors
+    drop_table :comfy_blog_authors
+    drop_table :comfy_blog_post_categories
+    drop_table :comfy_blog_categories
+    drop_table :comfy_blog_comments
+    drop_table :comfy_blog_posts
+    drop_table :comfy_blogs
   end
 
 end
