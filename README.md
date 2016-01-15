@@ -28,7 +28,7 @@ Add gem definition to your Gemfile:
 
     gem 'comfy_blog',
       git: 'git@github.com:HitFox/comfy-blog.git',
-      tag: 'v1.13.4'
+      tag: 'v1.13.5'
 
 As mentioned above, the blog depends on our loveseat gem, so if you don't have the loveseat and foxinator gems, please include them in your project's Gemfile:
 
@@ -76,6 +76,9 @@ If you want to use something other than our default comment form on the blog pos
 * It seems as though when you create more than one blog for a site, the blog lookup gets messed up. So if there is one blog per site, then everything works correctly (which has been the use case every time we've used the original verison of the gem).
 
 ## Changelog
+
+### 1.13.5 / 15-01-2016
+* Update loveseat dependency version, to make sure everything works with foxinator in the Gemfile
 
 ### 1.13.4 / 12-01-2016
 * Fix minor bugs
