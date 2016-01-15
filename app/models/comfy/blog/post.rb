@@ -20,7 +20,12 @@ class Comfy::Blog::Post < ActiveRecord::Base
   has_attached_file :facebook_image, styles: { thumb: '50x50>' }
   has_attached_file :gplus_image, styles: { thumb: '50x50>' }
   has_attached_file :twitter_image, styles: { thumb: '120x120>' }
-
+  has_attached_file :image,
+    styles: {
+      medium: '100x100>',
+      thumb: '50x50>'
+    },
+    default_url: '/images/:style/missing.png'
 
   # -- Validations ----------------------------------------------------------
   validates :blog_id, :title, :slug, :year, :month, :content,

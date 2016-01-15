@@ -19,6 +19,11 @@
              :id, :full_name, {label: "Author*"}, { multiple: false }
           = form.text_area :content, label: "Content*", :data => {'cms-rich-text' => true}
           = form.text_area :excerpt, :class => 'short'
+          - if @post.image.present?
+            .form-group
+              = form.label :image, 'Thumbnail', class: "control-label col-sm-2"
+              = link_to image_tag(@post.image.url(:thumb)), @post.image.url(:original), target: "blank"
+          = form.file_field :image, label: "Upload Thumbnail"
           = form.text_field :published_at, :value => @post.published_at.try(:to_s, :db), :data => {'cms-datetime' => true}
           = form.form_group :is_published do
             = form.check_box :is_published
