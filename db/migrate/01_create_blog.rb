@@ -39,6 +39,8 @@ class CreateBlog < ActiveRecord::Migration
     add_attachment :comfy_blog_posts, :facebook_image
     add_attachment :comfy_blog_posts, :gplus_image
     add_attachment :comfy_blog_posts, :twitter_image
+    # Post thumbnail
+    add_attachment :comfy_blog_posts, :image
 
     add_index :comfy_blog_posts, [:is_published, :year, :month, :slug],
       :name => 'index_blog_posts_on_published_year_month_slug'
