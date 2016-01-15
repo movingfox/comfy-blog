@@ -1,3 +1,3 @@
 module ComfyBlog
-  VERSION = "1.13.5"
+  VERSION = "1.14.0"
 end
