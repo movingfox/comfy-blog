@@ -77,6 +77,9 @@ If you want to use something other than our default comment form on the blog pos
 
 ## Changelog
 
+### 1.15.0 / 02-02-2016
+* Change dependency on Comfortable Mexican Loveseat to be a minimum version
+
 ### 1.14.0 / 15-01-2016
 * New feature: A blog post can have a thumbnail that can be seen on the blogs posts index page
 
