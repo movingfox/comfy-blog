@@ -3,7 +3,6 @@ module PostHelper
     tags = []
     title = post.seo_title || post.title
     tags << tag('meta', name: 'robots', content: "index,follow,noodp")
-    tags << tag('meta', name: 'title', content: post.seo_title || post.title)
     tags << content_tag(:title, post.seo_title || post.title)
     tags << tag('meta', name: 'description', content: post.meta_description) if post.meta_description.present?
     tags << tag('link', rel: 'canonical', href: request.original_url.split('?').first)
@@ -37,6 +36,6 @@ module PostHelper
     tags << tag('meta', name: 'twitter:title', content: post.twitter_title) if post.twitter_title.present?
     tags << tag('meta', name: 'twitter:description', content: post.twitter_description) if post.twitter_description.present?
 
-    return ("<!-- SEO Optimizations-->\n" + tags.join("\n") + "\n<!-- /SEO Optimizations-->\n").html_safe
+    return (tags.join("\n")).html_safe
   end
 end
