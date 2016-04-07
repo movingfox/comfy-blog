@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.platform      = Gem::Platform::RUBY
   s.require_paths = ['lib']
 
-  s.add_dependency 'comfortable_mexican_loveseat', '>= 0.0.22'
+  s.add_dependency 'comfortable_mexican_sofa', '~> 1.12.9'
   s.add_dependency 'paperclip', '~> 4.3'
   s.add_dependency 'mini_magick', '4.3.6'
 end
