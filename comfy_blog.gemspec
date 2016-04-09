@@ -17,6 +17,6 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_dependency 'comfortable_mexican_sofa', '~> 1.12.9'
-  s.add_dependency 'paperclip', '~> 4.3'
-  s.add_dependency 'mini_magick', '4.3.6'
+  s.add_dependency 'paperclip', '>= 4.0'
+  s.add_dependency 'mini_magick', '~> 4.5.1'
 end
