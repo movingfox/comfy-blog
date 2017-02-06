@@ -2,7 +2,7 @@
 = form.text_field :identifier, label: "Identifier*", :data => {:slug => true}
 = form.text_field :path
 
-- if (options = Comfy::Cms::Layout.app_layouts_for_select).present?
+- if (options = Comfy::Cms::Layout.app_layouts_for_select [File.join(Rails.root, 'app', 'views')]).present?
   = form.select :app_layout, options
 
 = form.text_area :description, :class => 'short'
